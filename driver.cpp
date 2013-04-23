@@ -22,7 +22,7 @@ int main(int argc, const char **argv){
     getline(in, line);
     if(line != "") {
       table.push_back(vector<short>());
-      for(int i = 0; i < line.length(); i++) {
+      for(unsigned int i = 0; i < line.length(); i++) {
         ss << line[i];
         ss >> number;
         ss.str(""); ss.clear();
@@ -31,6 +31,12 @@ int main(int argc, const char **argv){
       }
       count++;
     }
+  }
+  for(int i = 0; i < count; i++) {
+    for(unsigned int j = 0; j < table[i].size(); j++) {
+      cout << table[i].at(j);
+    }
+    cout << endl;
   }
 
 	return 0;
