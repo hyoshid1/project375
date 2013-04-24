@@ -5,6 +5,7 @@
 #include <cmath>
 #include "Node.h"
 #include "List.h"
+#include "sort.h"
 
 using namespace std;
 
@@ -16,12 +17,9 @@ int main(int argc, const char **argv){
 	ifstream in(argv[1]);
 	ofstream out(argv[2]);
   stringstream ss;
-	string line;
-  string *array;
-  List **listArray;
-  int n = 0, count = 0, tempInt;
+	string line, *array;
+  int n = 0, count = 0;
   unsigned int maxLength=0;
-  int mod = 10, div = 1;
 
   while(in.good()) {
     getline(in, line);
@@ -31,9 +29,8 @@ int main(int argc, const char **argv){
     }
   }
 
-  in.close();
-  in.open(argv[1]);
   array = new string[n];
+  in.close(); in.open(argv[1]);
 
   while(in.good()) {
     getline(in, line);
@@ -42,46 +39,10 @@ int main(int argc, const char **argv){
       count++;
     }
   }
-  cout << maxLength << endl;
 
-  //populate adjacency list
-  for(unsigned int j = 0; j < maxLength; j++) {
-    cout << j+1 << " ";
-    listArray = new List*[10];
-    for(int i = 0; i < 10; i++) {
-      listArray[i] = new List();
-    }
-
-    count = 0;
-    for(int i = 0; i < n; i++) {
-      ss << array[i];
-      ss >> tempInt;
-      ss.str(""); ss.clear();
-
-      listArray[(tempInt%mod)/div]->append(new Node(array[i], NULL));
-    }
-    cout << "list populated" << endl;
-
-    //repopulate array of numbers
-    for(int i = 0; i < 10; i++) {
-      if(listArray[i]->getRoot() != NULL) {
-        Node *temp = listArray[i]->getRoot();
-        while(temp != NULL) {
-          array[count] = temp->getData();
-          count++;
-          temp = temp->getNext();
-        }
-      }
-    }
-    delete []listArray;
-
-    mod *= 10;
-    div *= 10;
-  }
-  
-  for(int i = 0; i < n; i++) {
+  radixSort(array, n, maxLength);
+  for(int i = 0; i < n; i++)
     out << array[i] << endl;
-  }
 
 	return 0;
 }
