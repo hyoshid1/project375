@@ -18,8 +18,8 @@ int main(int argc, const char **argv){
   stringstream ss;
 	string line;
   string *array;
-  List *listArray;
-  int n = 0, count = 0, temp;
+  List **listArray;
+  int n = 0, count = 0, tempInt;
   unsigned int maxLength=0;
   int mod = 10, div = 1;
 
@@ -43,52 +43,42 @@ int main(int argc, const char **argv){
     }
   }
 
-  listArray = new List[10];
-  /*
-  for(int i = 0; i < 10; i++) {
-    listArray[i] = new List();
-  }
-  */
-
   //populate adjacency list
   for(unsigned int j = 0; j < maxLength; j++) {
+    listArray = new List*[10];
+    for(int i = 0; i < 10; i++) {
+      listArray[i] = new List();
+    }
+
     count = 0;
     for(int i = 0; i < n; i++) {
       ss << array[i];
-      ss >> temp;
+      ss >> tempInt;
       ss.str(""); ss.clear();
 
-      Node *num = new Node(array[i], NULL);
-      listArray[(temp%mod)/div].append(num);
-      delete num;
+      listArray[(tempInt%mod)/div]->append(new Node(array[i], NULL));
     }
 
-    /*
-    for(int i = 0; i < n; i++) {
-      cout << array[i] << endl;
-    }
-    cout << endl;
-    */
     //repopulate array of numbers
     for(int i = 0; i < 10; i++) {
-      if(listArray[i].getRoot() != NULL) {
-        Node *temp = listArray[i].getRoot();
-        while(temp->getNext() != NULL) {
-          //array[count] = temp->getData();
-          cout << temp->getData() << endl;
+      if(listArray[i]->getRoot() != NULL) {
+        Node *temp = listArray[i]->getRoot();
+        while(temp != NULL) {
+          array[count] = temp->getData();
+          //cout << temp->getData() << endl;
           count++;
           temp = temp->getNext();
         }
       }
-      //delete &listArray[i];
     }
-    
+    delete []listArray;
+
     mod *= 10;
     div *= 10;
   }
-
+  
   for(int i = 0; i < n; i++) {
-    cout << array[i] << endl;
+    out << array[i] << endl;
   }
 
 	return 0;

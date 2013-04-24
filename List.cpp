@@ -13,7 +13,7 @@ void List::append(Node *node){
 	else{
 		Node *temp = root;
 		while(temp->getNext() != NULL)
-			temp->setNext(temp->getNext());
+			temp = temp->getNext();
 		temp->setNext(node);
 	}
 }
