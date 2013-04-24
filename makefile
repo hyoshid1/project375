@@ -1,5 +1,5 @@
 all:
-	g++ -Wall -Wextra -o submission driver.cpp
+	g++ -Wall -Wextra -g -o submission driver.cpp
 
 test1:
 	./submission input.txt output.txt
