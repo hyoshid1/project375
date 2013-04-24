@@ -42,9 +42,11 @@ int main(int argc, const char **argv){
       count++;
     }
   }
+  cout << maxLength << endl;
 
   //populate adjacency list
   for(unsigned int j = 0; j < maxLength; j++) {
+    cout << j+1 << " ";
     listArray = new List*[10];
     for(int i = 0; i < 10; i++) {
       listArray[i] = new List();
@@ -58,6 +60,7 @@ int main(int argc, const char **argv){
 
       listArray[(tempInt%mod)/div]->append(new Node(array[i], NULL));
     }
+    cout << "list populated" << endl;
 
     //repopulate array of numbers
     for(int i = 0; i < 10; i++) {
@@ -65,7 +68,6 @@ int main(int argc, const char **argv){
         Node *temp = listArray[i]->getRoot();
         while(temp != NULL) {
           array[count] = temp->getData();
-          //cout << temp->getData() << endl;
           count++;
           temp = temp->getNext();
         }

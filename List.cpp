@@ -4,17 +4,17 @@ using namespace std;
 
 List::List(){
   root = NULL;
+  end = NULL;
 }
 
 void List::append(Node *node){
-	if(root ==NULL){
+	if(root == NULL){
 		root = node;
+    end = node;
 	}
 	else{
-		Node *temp = root;
-		while(temp->getNext() != NULL)
-			temp = temp->getNext();
-		temp->setNext(node);
+    end->setNext(node);
+    end = node;
 	}
 }
 
