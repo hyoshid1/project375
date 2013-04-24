@@ -29,8 +29,8 @@ int main(){
 		if(a<0) a*= -1;
 		if(b<0) b*= -1;
 		if(c<0) c*= -1;
-		z=rand()%5;
-		ss << x << c << a << b << y << d << e <<f <<g <<h;
+		z=rand();
+		ss << x+z << c << a << b << y << d << e <<f <<g <<h;
 		ss >> str;
 		/*if(z==2)
 			out << x << endl;
