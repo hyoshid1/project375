@@ -8,15 +8,17 @@
 using namespace std;
 
 void radixSort(string *array, int size, string max, int maxLength) {
+  cout << max << endl;
   int bytes = calcBytes(max, maxLength);
   int digits = ceil(bytes/(log(size)/log(2.0)));
   int r = ceil((double)bytes/digits);
-  int k = pow(2.0, (double)r) - 1;
-  int mod = k;
+  int k = pow(2.0, (double)r);
+  cout << digits << " " << r << " " << k << endl;
+  long double mod = k;
   int div = 1;
   List **adjList;
 
-  for(int i = 0; i < digits; i++) {
+  for(int i = 0; i <= digits; i++) {
     adjList = new List*[k];
     for(int j = 0; j < k; j++)
       adjList[j] = new List();

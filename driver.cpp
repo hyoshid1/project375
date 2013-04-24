@@ -33,12 +33,6 @@ int main(int argc, const char **argv){
         max = line;
         maxInt = tempInt;
       }
-     /*
-      if((int)line.size() > maxLength) {
-        maxLength = line.size();
-        max = line;
-      }
-      */
     }
   }
 
