@@ -17,15 +17,28 @@ int main(int argc, const char **argv){
 	ifstream in(argv[1]);
 	ofstream out(argv[2]);
   stringstream ss;
-	string line, *array;
-  int n = 0, count = 0;
-  unsigned int maxLength=0;
+	string line, *array, max;
+  int n = 0, count = 0, tempInt, maxInt = 0;
+  int maxLength=0;
 
   while(in.good()) {
     getline(in, line);
     if(line != "") {
       n++;
-      if(line.size() > maxLength) maxLength = line.size();
+      ss << line;
+      ss >> tempInt;
+      ss.str(""); ss.clear();
+      if(tempInt > maxInt) {
+        maxLength = line.size();
+        max = line;
+        maxInt = tempInt;
+      }
+     /*
+      if((int)line.size() > maxLength) {
+        maxLength = line.size();
+        max = line;
+      }
+      */
     }
   }
 
@@ -40,7 +53,7 @@ int main(int argc, const char **argv){
     }
   }
 
-  radixSort(array, n, maxLength);
+  radixSort(array, n, max, maxLength);
   for(int i = 0; i < n; i++)
     out << array[i] << endl;
 

@@ -1,24 +1,31 @@
 #include <iostream>
 #include <sstream>
+#include <cmath>
 #include "List.h"
 #include "Node.h"
 #include "sort.h"
 
 using namespace std;
 
-void radixSort(string *array, int size, unsigned int maxLength) {
-  int mod = 10, div = 1;
+void radixSort(string *array, int size, string max, int maxLength) {
+  int bytes = calcBytes(max, maxLength);
+  int digits = ceil(bytes/(log(size)/log(2.0)));
+  int r = ceil((double)bytes/digits);
+  int k = pow(2.0, (double)r) - 1;
+  int mod = k;
+  int div = 1;
   List **adjList;
-  for(unsigned int i; i < maxLength; i++) {
-    adjList = new List*[10];
-    for(int j = 0; j < 10; j++)
+
+  for(int i = 0; i < digits; i++) {
+    adjList = new List*[k];
+    for(int j = 0; j < k; j++)
       adjList[j] = new List();
     popAdjList(adjList, array, size, mod, div);
-    repopArray(adjList, array);
+    repopArray(adjList, array, k);
 
     delete []adjList;
-    mod *= 10;
-    div *= 10;
+    mod *= k;
+    div *= k;
   }
 }
 
@@ -34,10 +41,10 @@ void popAdjList(List **adjList, string *array, int size, int mod, int div) {
   }
 }
 
-void repopArray(List **adjList, string *array) {
+void repopArray(List **adjList, string *array, int k) {
   Node *temp;
   int count = 0;
-  for(int i = 0; i < 10; i++) {
+  for(int i = 0; i < k; i++) {
     if(adjList[i]->getRoot() != NULL) {
       temp = adjList[i]->getRoot();
       while(temp != NULL) {
@@ -49,7 +56,19 @@ void repopArray(List **adjList, string *array) {
   }
 }
 
-void printArray(string *array, int size) {
-  for(int i = 0; i < size; i++)
-    cout << array[i] << endl;
+int calcBytes(string max, int maxLength) {
+  double bytes = 0, tempInt, pos = maxLength-1;
+  stringstream ss;
+  for(int i = 1; i < maxLength/9 + 1; i++) {
+    pos = (maxLength-1) - i*9;
+    ss << max.substr(pos, 9);
+    ss >> tempInt;
+    ss.str(""); ss.clear();
+    bytes += log(tempInt)/log(2.0);
+  }
+  ss << max.substr(0, pos+1);
+  ss >> tempInt;
+  ss.str(""); ss.clear();
+  bytes += log(tempInt)/log(2.0);
+  return ceil(bytes);
 }

@@ -1,6 +1,9 @@
 all:
 	g++ -Wall -Wextra -g -o submission driver.cpp Node.cpp List.cpp sort.cpp
 
+test:
+	./submission input2.txt output2.txt
+
 test1:
 	./submission input.txt output.txt
 
