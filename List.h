@@ -9,8 +9,10 @@ class List{
 	
 	public:
 		List();
-		void append(Node node);
+		void append(Node *node);
 		void removeFirst();
+    Node* getRoot();
+    void setRoot(Node *rootIn);
 		~List();
 };
 

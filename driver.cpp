@@ -3,17 +3,10 @@
 #include <sstream>
 #include <vector>
 #include <cmath>
+#include "Node.h"
+#include "List.h"
 
 using namespace std;
-
-struct node {
-  string number;
-  node *next;
-};
-
-struct list {
-  node *root;
-};
 
 int main(int argc, const char **argv){
   if(argc != 3) {
@@ -25,13 +18,16 @@ int main(int argc, const char **argv){
   stringstream ss;
 	string line;
   string *array;
-  list *listArray;
+  List *listArray;
   int n = 0, count = 0, temp;
+  unsigned int maxLength=0;
+  int mod = 10, div = 1;
 
   while(in.good()) {
     getline(in, line);
     if(line != "") {
       n++;
+      if(line.size() > maxLength) maxLength = line.size();
     }
   }
 
@@ -47,28 +43,53 @@ int main(int argc, const char **argv){
     }
   }
 
-  listArray = new list[10];
+  listArray = new List[10];
+  /*
   for(int i = 0; i < 10; i++) {
-    listArray[i].root = NULL;
+    listArray[i] = new List();
   }
-  for(int i = 0; i < n; i++) {
-    ss << array[i];
-    ss >> temp;
-    ss.str(""); ss.clear();
+  */
 
-    node *num;
-    num->number = array[i];
-    num->next = NULL;
-    if(listArray[temp%10].root == NULL) {
-      listArray[temp%10].root = num;
+  //populate adjacency list
+  for(unsigned int j = 0; j < maxLength; j++) {
+    count = 0;
+    for(int i = 0; i < n; i++) {
+      ss << array[i];
+      ss >> temp;
+      ss.str(""); ss.clear();
+
+      Node *num = new Node(array[i], NULL);
+      listArray[(temp%mod)/div].append(num);
+      delete num;
     }
-    else {
-      node *tempPtr = listArray[temp%10].root;
-      while(tempPtr->next != NULL) {
-        tempPtr = tempPtr->next;
+
+    /*
+    for(int i = 0; i < n; i++) {
+      cout << array[i] << endl;
+    }
+    cout << endl;
+    */
+    //repopulate array of numbers
+    for(int i = 0; i < 10; i++) {
+      if(listArray[i].getRoot() != NULL) {
+        Node *temp = listArray[i].getRoot();
+        while(temp->getNext() != NULL) {
+          //array[count] = temp->getData();
+          cout << temp->getData() << endl;
+          count++;
+          temp = temp->getNext();
+        }
       }
-      tempPtr->next = num;
+      //delete &listArray[i];
     }
+    
+    mod *= 10;
+    div *= 10;
   }
+
+  for(int i = 0; i < n; i++) {
+    cout << array[i] << endl;
+  }
+
 	return 0;
 }

@@ -2,9 +2,11 @@
 
 using namespace std;
 
-List::List(){}
+List::List(){
+  root = NULL;
+}
 
-void List::append(Node node){
+void List::append(Node *node){
 	if(root ==NULL){
 		root = node;
 	}
@@ -21,6 +23,14 @@ void List::removeFirst(){
 	temp = root->getNext();
 	delete root;
 	root = temp;
+}
+
+Node* List::getRoot() {
+  return root;
+}
+
+void List::setRoot(Node *rootIn) {
+  root = rootIn;
 }
 
 List::~List(){

@@ -14,7 +14,6 @@ class Node {
     Node* getNext();
     void setData(std::string dataIn);
     void setNext(Node *nextIn);
-    ~Node();
 };
 
 #endif
