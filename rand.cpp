@@ -11,7 +11,7 @@ int main(){
 	stringstream ss;
 	string str;
 	out.open("100d_largeInput.txt");
-	int a, b, c, x, y, z;
+	unsigned int a, b, c, x, y, z;
 	int d, e, f, g, h;
 	for(int i=0; i< 100000; i++){
 		a= rand();
