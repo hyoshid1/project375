@@ -3,16 +3,16 @@
 using namespace std;
 
 Node::Node() {
-  data = "";
+  data = 0;
   next = NULL;
 }
 
-Node::Node(string dataIn, Node *nextIn) {
+Node::Node(BigInteger dataIn, Node *nextIn) {
   data = dataIn;
   next = nextIn;
 }
 
-string Node::getData() {
+BigInteger Node::getData() {
   return data;
 }
 
@@ -20,7 +20,7 @@ Node* Node::getNext() {
   return next;
 }
 
-void Node::setData(string dataIn) {
+void Node::setData(BigInteger dataIn) {
   data = dataIn;
 }
 

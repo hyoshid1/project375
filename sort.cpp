@@ -1,15 +1,14 @@
 #include <iostream>
 #include <sstream>
 #include <cmath>
-#include <sys/time.h>
 #include "List.h"
 #include "Node.h"
 #include "sort.h"
-//#include "BigIntegerLibrary.hh"
+#include "BigIntegerLibrary.hh"
 
 using namespace std;
 
-void radixSort(string *array, int size, string max, int maxLength) {
+void radixSort(BigInteger *array, int size, string max, int maxLength) {
 
   long double bytes = calcBytes(max, maxLength);
   long double digits = ceil(bytes/(log(size)/log(2.0L)));
@@ -35,22 +34,17 @@ void radixSort(string *array, int size, string max, int maxLength) {
   }
 }
 
-void popAdjList(List **adjList, string *array, int size, BigInteger mod, BigInteger div) {
+void popAdjList(List **adjList, BigInteger *array, int size,
+                BigInteger mod, BigInteger div) {
   BigInteger temp, empty;
-  //struct timeval start, finish;
-  //double totalTime;
   for(int i = 0; i < size; i++) {
-    //gettimeofday(&start, NULL);
-    //gettimeofday(&finish, NULL);
-    //totalTime = ((double)((double)(finish.tv_usec - start.tv_usec) +
-          //(double)(finish.tv_usec - start.tv_usec)))/100;
-    temp = stringToBigInteger(array[i]);
+    temp = array[i];
     temp.divideWithRemainder(mod, empty);
     adjList[(temp/div).toInt()]->append(new Node(array[i], NULL));
   }
 }
 
-void repopArray(List **adjList, string *array, int k) {
+void repopArray(List **adjList, BigInteger *array, int k) {
   Node *temp;
   int count = 0;
   for(int i = 0; i < k; i++) {
