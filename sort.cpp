@@ -8,14 +8,15 @@
 using namespace std;
 
 void radixSort(string *array, int size, string max, int maxLength) {
-  cout << max << endl;
+
   int bytes = calcBytes(max, maxLength);
   int digits = ceil(bytes/(log(size)/log(2.0)));
   int r = ceil((double)bytes/digits);
   int k = pow(2.0, (double)r);
   cout << digits << " " << r << " " << k << endl;
+
   long double mod = k;
-  int div = 1;
+  long double div = 1;
   List **adjList;
 
   for(int i = 0; i <= digits; i++) {
@@ -28,18 +29,20 @@ void radixSort(string *array, int size, string max, int maxLength) {
     delete []adjList;
     mod *= k;
     div *= k;
+    cout << mod << " " << div << endl;
   }
 }
 
 void popAdjList(List **adjList, string *array, int size, int mod, int div) {
-  int tempInt;
+  long double temp;
   stringstream ss;
   for(int i = 0; i < size; i++) {
     ss << array[i];
-    ss >> tempInt;
+    ss >> temp;
     ss.str(""); ss.clear();
     
-    adjList[(tempInt%mod)/div]->append(new Node(array[i], NULL));
+    //adjList[(tempInt%mod)/div]->append(new Node(array[i], NULL));
+    adjList[(int)(fmod(temp, mod))/div]->append(new Node(array[i], NULL));
   }
 }
 
@@ -59,7 +62,7 @@ void repopArray(List **adjList, string *array, int k) {
 }
 
 int calcBytes(string max, int maxLength) {
-  double bytes = 0, tempInt, pos = maxLength-1;
+  double bytes = 0, pos = maxLength-1, tempInt;
   stringstream ss;
   for(int i = 1; i < maxLength/9 + 1; i++) {
     pos = (maxLength-1) - i*9;
