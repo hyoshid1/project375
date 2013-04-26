@@ -77,3 +77,4 @@ int calcBytes(string max, int maxLength) {
   bytes += log(tempInt)/log(2.0);
   return ceil(bytes);
 }
+
