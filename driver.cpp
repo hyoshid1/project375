@@ -6,6 +6,7 @@
 #include "Node.h"
 #include "List.h"
 #include "sort.h"
+#include "BigIntegerLibrary.hh"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ int main(int argc, const char **argv){
 	string line, *array, max, temp;
   int n = 0, count = 0;
   int maxLength=0;
+  BigInteger maxNum(0), tempMax;
 
   while(in.good()) {
     getline(in, line);
@@ -27,7 +29,6 @@ int main(int argc, const char **argv){
       n++;
       if((int)line.size() > maxLength) {
         maxLength = line.size();
-        max = line;
       }
     }
   }
@@ -46,14 +47,10 @@ int main(int argc, const char **argv){
   //find largest number
   for(int i = 0; i < n; i++) {
     if((int)array[i].size() == maxLength) {
-      for(int j = 0; j < maxLength; j++) {
-        if(array[i].at(j) > max[j]) {
-          max = array[i];
-          break;
-        }
-        else if(array[i].at(j) < max[j]) {
-          break;
-        }
+      tempMax = stringToBigInteger(array[i]);
+      if(tempMax > maxNum) {
+        maxNum = tempMax;
+        max = array[i];
       }
     }
   }

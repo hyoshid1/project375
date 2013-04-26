@@ -1,22 +1,24 @@
 #include <iostream>
 #include <sstream>
 #include <cmath>
+#include <sys/time.h>
 #include "List.h"
 #include "Node.h"
 #include "sort.h"
+//#include "BigIntegerLibrary.hh"
 
 using namespace std;
 
 void radixSort(string *array, int size, string max, int maxLength) {
 
-  int bytes = calcBytes(max, maxLength);
-  int digits = ceil(bytes/(log(size)/log(2.0)));
-  int r = ceil((double)bytes/digits);
-  int k = pow(2.0, (double)r);
+  long double bytes = calcBytes(max, maxLength);
+  long double digits = ceil(bytes/(log(size)/log(2.0L)));
+  long double r = ceil(bytes/digits);
+  long k = pow(2.0, (double)r);
   cout << digits << " " << r << " " << k << endl;
 
-  long double mod = k;
-  long double div = 1;
+  BigInteger mod = k;
+  BigInteger div = 1;
   List **adjList;
 
   for(int i = 0; i <= digits; i++) {
@@ -33,16 +35,18 @@ void radixSort(string *array, int size, string max, int maxLength) {
   }
 }
 
-void popAdjList(List **adjList, string *array, int size, int mod, int div) {
-  long double temp;
-  stringstream ss;
+void popAdjList(List **adjList, string *array, int size, BigInteger mod, BigInteger div) {
+  BigInteger temp, empty;
+  //struct timeval start, finish;
+  //double totalTime;
   for(int i = 0; i < size; i++) {
-    ss << array[i];
-    ss >> temp;
-    ss.str(""); ss.clear();
-    
-    //adjList[(tempInt%mod)/div]->append(new Node(array[i], NULL));
-    adjList[(int)(fmod(temp, mod))/div]->append(new Node(array[i], NULL));
+    //gettimeofday(&start, NULL);
+    //gettimeofday(&finish, NULL);
+    //totalTime = ((double)((double)(finish.tv_usec - start.tv_usec) +
+          //(double)(finish.tv_usec - start.tv_usec)))/100;
+    temp = stringToBigInteger(array[i]);
+    temp.divideWithRemainder(mod, empty);
+    adjList[(temp/div).toInt()]->append(new Node(array[i], NULL));
   }
 }
 
@@ -61,19 +65,20 @@ void repopArray(List **adjList, string *array, int k) {
   }
 }
 
-int calcBytes(string max, int maxLength) {
-  double bytes = 0, pos = maxLength-1, tempInt;
+long double calcBytes(string max, int maxLength) {
+  long double bytes = 0L, tempInt;
+  int pos = maxLength-1;
   stringstream ss;
   for(int i = 1; i < maxLength/9 + 1; i++) {
     pos = (maxLength-1) - i*9;
     ss << max.substr(pos, 9);
     ss >> tempInt;
     ss.str(""); ss.clear();
-    bytes += log(tempInt)/log(2.0);
+    bytes += log(tempInt)/log(2.0L);
   }
   ss << max.substr(0, pos+1);
   ss >> tempInt;
   ss.str(""); ss.clear();
-  bytes += log(tempInt)/log(2.0);
+  bytes += log(tempInt)/log(2.0L);
   return ceil(bytes);
 }
