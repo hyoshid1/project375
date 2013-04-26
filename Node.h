@@ -1,18 +1,19 @@
 #ifndef NODE_H
 #define NODE_H
 #include <string>
+#include "BigIntegerLibrary.hh"
 
 class Node {
   private:
-    std::string data;
+    BigInteger data;
     Node *next;
 
   public:
     Node();
-    Node(std::string dataIn, Node *nextIn);
-    std::string getData();
+    Node(BigInteger dataIn, Node *nextIn);
+    BigInteger getData();
     Node* getNext();
-    void setData(std::string dataIn);
+    void setData(BigInteger dataIn);
     void setNext(Node *nextIn);
 };
 

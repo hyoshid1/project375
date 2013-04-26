@@ -13,7 +13,7 @@ int main(){
 	out.open("100d_largeInput.txt");
 	unsigned int a, b, c, x, y, z;
 	int d, e, f, g, h;
-	for(int i=0; i< 100000; i++){
+	for(int i=0; i< 500000; i++){
 		a= rand();
 		b= rand();
 		x= rand();	
