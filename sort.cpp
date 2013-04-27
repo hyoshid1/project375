@@ -76,3 +76,28 @@ long double calcBytes(string max, int maxLength) {
   bytes += log(tempInt)/log(2.0L);
   return ceil(bytes);
 }
+
+int partition(BigInteger *array, int start, int size){
+	BigInteger x = array[size];
+	int i = start-1;
+	for(int j = start; j<size; j++){
+		if(array[j] > x){
+			i++;
+			BigInteger temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+	}
+	BigInteger temp2 = array[i+1];
+	array[i+1] = array[size];
+	array[size] = temp2;
+	return i+1;
+}
+
+void quickSort(BigInteger *array, int start, int size){
+	if(start < size){
+		int q = partition(array, start, size);
+		quickSort(array, start, q-1);
+		quickSort(array, q+1, size);
+	}
+}

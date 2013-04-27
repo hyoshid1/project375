@@ -8,4 +8,8 @@ void popAdjList(List **adjList, BigInteger *array, int size,
 void repopArray(List **adjList, BigInteger *array, int k);
 long double calcBytes(std::string max, int maxLength);
 
+//to compare with quicksort
+int partition(BigInteger *array, int start, int size);
+void quickSort(BigInteger *array, int start, int size);
+
 #endif
