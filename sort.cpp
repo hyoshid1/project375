@@ -1,23 +1,11 @@
-#include <iostream>
-#include <sstream>
-#include <cmath>
-#include "List.h"
-#include "Node.h"
 #include "sort.h"
-#include "BigIntegerLibrary.hh"
 
 using namespace std;
 
-void radixSort(BigInteger *array, int size, string max, int maxLength) {
+void radixSort(BigInteger *array, int size, long k, int digits) {
 
-  long double bytes = calcBytes(max, maxLength);
-  long double digits = ceil(bytes/(log(size)/log(2.0L)));
-  long double r = ceil(bytes/digits);
-  long k = pow(2.0, (double)r);
-  cout << digits << " " << r << " " << k << endl;
+  BigInteger mod = k, div = 1;
 
-  BigInteger mod = k;
-  BigInteger div = 1;
   List **adjList;
 
   for(int i = 0; i <= digits; i++) {
@@ -30,7 +18,7 @@ void radixSort(BigInteger *array, int size, string max, int maxLength) {
     delete []adjList;
     mod *= k;
     div *= k;
-    cout << mod << " " << div << endl;
+    //cout << mod << " " << div << endl;
   }
 }
 
