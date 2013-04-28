@@ -3,7 +3,7 @@ all:
 
 # Implicit rule to compile C++ files.  Modify to your taste.
 %.o: %.cpp
-	g++ -c -O2 -Wall -Wextra -pedantic $<
+	g++ -g -c -O2 -Wall -Wextra -pedantic $<
 
 # Components of the library.
 library-objects = \
@@ -39,7 +39,6 @@ program-objects = \
 	List.o \
 	sort.o \
 	driver.o \
-	cSort.o \
 
 
 # Conservatively assume all the program source files depend on all the library
@@ -65,7 +64,7 @@ clean :
 all : library $(program)
 
 test:
-	./submission input2.txt output2.txt
+	./submission input3.txt output3.txt
 
 test1:
 	./submission input.txt output.txt

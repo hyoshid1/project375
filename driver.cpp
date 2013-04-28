@@ -3,11 +3,11 @@
 #include <sstream>
 #include <vector>
 #include <cmath>
+#include <vector>
 #include <sys/time.h>
 #include "Node.h"
 #include "List.h"
 #include "sort.h"
-#include "cSort.h"
 #include "BigIntegerLibrary.hh"
 
 using namespace std;
@@ -23,7 +23,8 @@ int main(int argc, const char **argv){
 	string line, max, temp;
   int n = 0, count = 1;
   int maxLength=0;
-  BigInteger maxNum(0), tempMax, *array;
+  BigUnsigned maxNum(0), tempMax;
+  vector<BigUnsigned> vect; vect.push_back(0);
   struct timeval start, finish;
   double totalTime;
 
@@ -35,7 +36,7 @@ int main(int argc, const char **argv){
         maxLength = line.size();
       }
       else if((int)line.size() == maxLength) {
-        tempMax = stringToBigInteger(line);
+        tempMax = stringToBigUnsigned(line);
         if(tempMax > maxNum) {
           maxNum = tempMax;
         }
@@ -44,13 +45,14 @@ int main(int argc, const char **argv){
   }
   max = bigIntegerToString(maxNum);
 
-  array = new BigInteger[n+1];
+  //array = new BigUnsigned[n+1];
   in.close(); in.open(argv[1]);
 
   while(in.good()) {
     getline(in, line);
     if(line != "") {
-      array[count] = stringToBigInteger(line);
+      //vect[count] = stringToBigUnsigned(line);
+      vect.push_back(stringToBigUnsigned(line));
       count++;
     }
   }
@@ -60,7 +62,6 @@ int main(int argc, const char **argv){
   int r = ceil(bytes/digits);
   long k = pow(2.0, (double)r);
 
-  /*
   int dArrayLength = 11;
   int dArray[11];
   long kArray[11];
@@ -110,22 +111,23 @@ int main(int argc, const char **argv){
   for(int i = 0; i < dArrayLength; i++) {
     cout << "start " << i+1 << ": k = " << kArray[i] << endl;;
     gettimeofday(&start, NULL);
-    radixSort(array, n, kArray[i], dArray[i]);
+    cRadixSort(vect, n, kArray[i], dArray[i]);
     gettimeofday(&finish, NULL);
     totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
     cout << "     " << totalTime << "s" << endl;
+    out << "     " << totalTime << "s" << endl;
   }
 
-  */
+  /*
   gettimeofday(&start, NULL);
-  cRadixSort(array, n, digits, k);
+  cRadixSort(vect, n, digits, k);
   gettimeofday(&finish, NULL);
   totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
   cout << "     " << totalTime << "s" << endl;
 
-  out << "Sort Time: " << totalTime << "s" << endl;
   for(int i = 1; i <= n; i++)
-    out << array[i] << endl;
+    out << vect[i] << endl;
+  */
 
 	return 0;
 }
