@@ -2,9 +2,20 @@
 
 using namespace std;
 
+//Constructors =======================================
 List::List(){
   root = NULL;
   end = NULL;
+}
+
+//accessor ===========================================
+Node* List::getRoot() {
+  return root;
+}
+
+//mutators ===========================================
+void List::setRoot(Node *rootIn) {
+  root = rootIn;
 }
 
 void List::append(Node *node){
@@ -25,14 +36,7 @@ void List::removeFirst(){
 	root = temp;
 }
 
-Node* List::getRoot() {
-  return root;
-}
-
-void List::setRoot(Node *rootIn) {
-  root = rootIn;
-}
-
+//deconstructor ========================================
 List::~List(){
 	Node *first=root;
 	while(first->getNext() !=NULL)

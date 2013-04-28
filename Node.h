@@ -1,3 +1,8 @@
+/*Node for Linked list in radix sort with buckets
+ *node contains data, and pointer to next node
+ *accessors and mutators
+ */
+
 #ifndef NODE_H
 #define NODE_H
 #include <string>
