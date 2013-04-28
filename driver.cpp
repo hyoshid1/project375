@@ -12,6 +12,7 @@
 using namespace std;
 
 int main(int argc, const char **argv){
+//If incorrect number of commandline arguments
   if(argc != 3) {
     cout << "incorrect number of arguments" << endl;
     return 0;
@@ -26,6 +27,8 @@ int main(int argc, const char **argv){
   struct timeval start, finish;
   double totalTime;
 
+//While file is good to read
+//Looping through file to find the max in the text file
   while(in.good()) {
     getline(in, line);
     if(line != "") {
@@ -41,11 +44,15 @@ int main(int argc, const char **argv){
       }
     }
   }
+
+//Set max
   max = bigIntegerToString(maxNum);
 
+//Array to store all numbers
   array = new BigInteger[n];
   in.close(); in.open(argv[1]);
 
+//Looping through input file to store all values
   while(in.good()) {
     getline(in, line);
     if(line != "") {
@@ -116,6 +123,7 @@ int main(int argc, const char **argv){
     cout << "     " << totalTime << "s" << endl;
   }
 
+//Write time it took to sort an sorted numbers into output file
   out << "Sort Time: " << totalTime << "s" << endl;
   for(int i = 0; i < n; i++)
     out << array[i] << endl;

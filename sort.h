@@ -7,6 +7,7 @@
 #include "List.h"
 #include "BigIntegerLibrary.hh"
 
+//Radix sort that uses buckets
 void radixSort(BigInteger *array, int size, long k, int digits);
 void popAdjList(List **adjList, BigInteger *array, int size, 
                 BigInteger mod, BigInteger div);

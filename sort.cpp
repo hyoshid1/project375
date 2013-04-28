@@ -8,6 +8,7 @@ void radixSort(BigInteger *array, int size, long k, int digits) {
 
   List **adjList;
 
+//creates adjacency list and populates it
   for(int i = 0; i <= digits; i++) {
     adjList = new List*[k];
     for(int j = 0; j < k; j++)
@@ -27,7 +28,12 @@ void popAdjList(List **adjList, BigInteger *array, int size,
   BigInteger temp, empty;
   for(int i = 0; i < size; i++) {
     temp = array[i];
+
+//divideWithRemainder will divide temp by mod, 
+//store the quotient in empty and set temp equal to the mod
     temp.divideWithRemainder(mod, empty);
+
+//append number at the end of the list at temp/div 
     adjList[(temp/div).toInt()]->append(new Node(array[i], NULL));
   }
 }
