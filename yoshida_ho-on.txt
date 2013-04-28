@@ -1,0 +1,9 @@
+Contribution to Project:
+  -Powerpoint presentation
+  -Radix sort using buckets
+  -Objects that were used in buckets
+  -Random number generator to create input files
+
+Evalutaion of Partner (Sam):
+  Sam performed very well. I feel that we were able to communicate well and able to 
+  do our work without much conflict.

@@ -1,0 +1,8 @@
+My contribution to the project was the implementation of the driver and
+radix sort algorithm using counting sort. I also updated the code to be
+able to sort arbitrarily large numbers(only limited by memory) using
+a third party library called BigIntegerLibrary. I also created and maintained
+the makefile.
+
+Ho-on's performance was great. The work was divided fairly evenly, and
+
