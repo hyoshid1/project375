@@ -39,6 +39,7 @@ program-objects = \
 	List.o \
 	sort.o \
 	driver.o \
+	cSort.o \
 
 
 # Conservatively assume all the program source files depend on all the library

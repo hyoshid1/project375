@@ -7,6 +7,7 @@
 #include "Node.h"
 #include "List.h"
 #include "sort.h"
+#include "cSort.h"
 #include "BigIntegerLibrary.hh"
 
 using namespace std;
@@ -21,7 +22,7 @@ int main(int argc, const char **argv){
 	ofstream out(argv[2]);
   stringstream ss;
 	string line, max, temp;
-  int n = 0, count = 0;
+  int n = 0, count = 1;
   int maxLength=0;
   BigInteger maxNum(0), tempMax, *array;
   struct timeval start, finish;
@@ -48,8 +49,12 @@ int main(int argc, const char **argv){
 //Set max
   max = bigIntegerToString(maxNum);
 
+<<<<<<< HEAD
 //Array to store all numbers
   array = new BigInteger[n];
+=======
+  array = new BigInteger[n+1];
+>>>>>>> 26dd8a1b38090fe3d8ef1ca8057d99b856ef00f2
   in.close(); in.open(argv[1]);
 
 //Looping through input file to store all values
@@ -60,14 +65,13 @@ int main(int argc, const char **argv){
       count++;
     }
   }
-  cout << sizeof(array) << endl;
   
-  /*
   long double bytes = calcBytes(max, maxLength);
   int digits = ceil(bytes/(log(n)/log(2.0L)));
   int r = ceil(bytes/digits);
-  int k = pow(2.0, (double)r);
+  long k = pow(2.0, (double)r);
 
+  /*
   int dArrayLength = 11;
   int dArray[11];
   long kArray[11];
@@ -123,11 +127,20 @@ int main(int argc, const char **argv){
     cout << "     " << totalTime << "s" << endl;
   }
 
+<<<<<<< HEAD
 //Write time it took to sort an sorted numbers into output file
+=======
+  */
+  gettimeofday(&start, NULL);
+  cRadixSort(array, n, digits, k);
+  gettimeofday(&finish, NULL);
+  totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
+  cout << "     " << totalTime << "s" << endl;
+
+>>>>>>> 26dd8a1b38090fe3d8ef1ca8057d99b856ef00f2
   out << "Sort Time: " << totalTime << "s" << endl;
-  for(int i = 0; i < n; i++)
+  for(int i = 1; i <= n; i++)
     out << array[i] << endl;
 
 	return 0;
-  */
 }
