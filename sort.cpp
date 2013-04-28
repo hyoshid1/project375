@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void radixSort(BigUnsigned *array, int size, long k, int digits) {
+void radixSort(vector<BigUnsigned> vect, int size, int digits, long k) {
 
   BigUnsigned mod = k, div = 1;
 
@@ -13,39 +13,38 @@ void radixSort(BigUnsigned *array, int size, long k, int digits) {
     adjList = new List*[k];
     for(int j = 0; j < k; j++)
       adjList[j] = new List();
-    popAdjList(adjList, array, size, mod, div);
-    repopArray(adjList, array, k);
+    popAdjList(adjList, vect, size, mod, div);
+    repopArray(adjList, vect, k);
 
     delete []adjList;
     mod *= k;
     div *= k;
-    //cout << mod << " " << div << endl;
   }
 }
 
-void popAdjList(List **adjList, BigUnsigned *array, int size,
+void popAdjList(List **adjList, vector<BigUnsigned> vect, int size,
                 BigUnsigned mod, BigUnsigned div) {
   BigUnsigned temp, empty;
   for(int i = 0; i < size; i++) {
-    temp = array[i];
+    temp = vect[i];
 
 //divideWithRemainder will divide temp by mod, 
 //store the quotient in empty and set temp equal to the mod
     temp.divideWithRemainder(mod, empty);
 
 //append number at the end of the list at temp/div 
-    adjList[(temp/div).toInt()]->append(new Node(array[i], NULL));
+    adjList[(temp/div).toInt()]->append(new Node(vect[i], NULL));
   }
 }
 
-void repopArray(List **adjList, BigUnsigned *array, int k) {
+void repopArray(List **adjList, vector<BigUnsigned> vect, int k) {
   Node *temp;
   int count = 0;
   for(int i = 0; i < k; i++) {
     if(adjList[i]->getRoot() != NULL) {
       temp = adjList[i]->getRoot();
       while(temp != NULL) {
-        array[count] = temp->getData();
+        vect[count] = temp->getData();
         count++;
         temp = temp->getNext();
       }

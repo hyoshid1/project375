@@ -9,10 +9,10 @@
 #include "BigIntegerLibrary.hh"
 
 //Radix sort that uses buckets
-void radixSort(BigUnsigned *array, int size, long k, int digits);
-void popAdjList(List **adjList, BigUnsigned *array, int size, 
+void radixSort(std::vector<BigUnsigned> vect, int size, int digits, long k);
+void popAdjList(List **adjList, std::vector<BigUnsigned> vect, int size, 
                 BigUnsigned mod, BigUnsigned div);
-void repopArray(List **adjList, BigUnsigned *array, int k);
+void repopArray(List **adjList, std::vector<BigUnsigned> vect, int k);
 long double calcBytes(std::string max, int maxLength);
 void cRadixSort(std::vector<BigUnsigned> &vect, int size, long digits, int k);
 

@@ -116,20 +116,22 @@ int main(int argc, const char **argv){
   for(int i = 0; i < dArrayLength; i++) {
     cout << "start " << i+1 << ": k = " << kArray[i] << endl;;
     gettimeofday(&start, NULL);
-    cRadixSort(vect, n, kArray[i], dArray[i]);
+    radixSort(vect, n, dArray[i], kArray[i]);
     gettimeofday(&finish, NULL);
     totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
     cout << "     " << totalTime << "s" << endl;
     out << "     " << totalTime << "s" << endl;
   }
 
-//Write time it took to sort an sorted numbers into output file
   /*
+//Write time it took to sort an sorted numbers into output file
+  cout << "start" << endl;
   gettimeofday(&start, NULL);
-  cRadixSort(vect, n, digits, k);
+  //cRadixSort(vect, n, digits, k);
+  radixSort(vect, n, digits, k);
   gettimeofday(&finish, NULL);
   totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
-  cout << "     " << totalTime << "s" << endl;
+  cout << totalTime << "s" << endl;
   for(int i = 1; i <= n; i++)
     out << vect[i] << endl;
   */
