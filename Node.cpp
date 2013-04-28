@@ -7,12 +7,12 @@ Node::Node() {
   next = NULL;
 }
 
-Node::Node(BigInteger dataIn, Node *nextIn) {
+Node::Node(BigUnsigned dataIn, Node *nextIn) {
   data = dataIn;
   next = nextIn;
 }
 
-BigInteger Node::getData() {
+BigUnsigned Node::getData() {
   return data;
 }
 
@@ -20,7 +20,7 @@ Node* Node::getNext() {
   return next;
 }
 
-void Node::setData(BigInteger dataIn) {
+void Node::setData(BigUnsigned dataIn) {
   data = dataIn;
 }
 

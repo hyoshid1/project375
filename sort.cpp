@@ -2,9 +2,9 @@
 
 using namespace std;
 
-void radixSort(BigInteger *array, int size, long k, int digits) {
+void radixSort(BigUnsigned *array, int size, long k, int digits) {
 
-  BigInteger mod = k, div = 1;
+  BigUnsigned mod = k, div = 1;
 
   List **adjList;
 
@@ -23,9 +23,9 @@ void radixSort(BigInteger *array, int size, long k, int digits) {
   }
 }
 
-void popAdjList(List **adjList, BigInteger *array, int size,
-                BigInteger mod, BigInteger div) {
-  BigInteger temp, empty;
+void popAdjList(List **adjList, BigUnsigned *array, int size,
+                BigUnsigned mod, BigUnsigned div) {
+  BigUnsigned temp, empty;
   for(int i = 0; i < size; i++) {
     temp = array[i];
 
@@ -38,7 +38,7 @@ void popAdjList(List **adjList, BigInteger *array, int size,
   }
 }
 
-void repopArray(List **adjList, BigInteger *array, int k) {
+void repopArray(List **adjList, BigUnsigned *array, int k) {
   Node *temp;
   int count = 0;
   for(int i = 0; i < k; i++) {
@@ -94,4 +94,40 @@ void quickSort(BigInteger *array, int start, int size){
 		quickSort(array, start, q-1);
 		quickSort(array, q+1, size);
 	}
+}
+
+void cRadixSort(vector<BigUnsigned> &vect, int size, long digits, int k) {
+  BigUnsigned mod = k, div = 1, temp, empty;//, *sArray
+  vector<BigUnsigned> sVect(size+1, 0);
+  vector<int> oVect(k, 0);
+  vector<int> dVect(size+1, 0);
+
+  for(int i = 0; i <= digits; i++) {
+    for(int j = 1; j <= size; j++) {
+      temp = vect[j];
+      temp.divideWithRemainder(mod, empty);
+      dVect[j] = (temp/div).toInt();
+    }
+
+    for(int j = 0; j < k; j++) 
+      oVect[j] = 0;
+
+    for(int j = 1; j <= size; j++) 
+      oVect[dVect[j]] = oVect[dVect[j]] + 1;
+
+    for(int j = 1; j < k; j++)
+      oVect[j] = oVect[j] + oVect[j-1];
+
+    for(int j = size; j >= 1; j--) {
+      int index = oVect[dVect[j]];
+      sVect[index] = vect[j];
+      oVect[dVect[j]] = oVect[dVect[j]]-1;
+    }
+
+    for(int j = 1; j <= size; j++)
+      vect[j] = sVect[j];
+
+  mod *= k;
+  div *= k;
+  }
 }

@@ -5,15 +5,15 @@
 
 class Node {
   private:
-    BigInteger data;
+    BigUnsigned data;
     Node *next;
 
   public:
     Node();
-    Node(BigInteger dataIn, Node *nextIn);
-    BigInteger getData();
+    Node(BigUnsigned dataIn, Node *nextIn);
+    BigUnsigned getData();
     Node* getNext();
-    void setData(BigInteger dataIn);
+    void setData(BigUnsigned dataIn);
     void setNext(Node *nextIn);
 };
 
