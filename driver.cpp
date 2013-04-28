@@ -67,45 +67,40 @@ int main(int argc, const char **argv){
   int r = ceil(bytes/digits);
   long k = pow(2.0, (double)r);
 
-  int dArrayLength = 11;
-  int dArray[11];
-  long kArray[11];
+  int dArrayLength = 9;
+  int dArray[9];
+  long kArray[9];
   if(maxLength == 10 || maxLength == 20) {
     if(maxLength == 10) {
       dArray[0] = 10; dArray[1] = 5;
       dArray[2] = 4;  dArray[3] = 3;
       dArray[4] = 2;  dArray[5] = 2;
       dArray[6] = 2;  dArray[7] = 2;
-      dArray[8] = 2;  dArray[9] = 1;
     } 
     else {
       dArray[0] = 20; dArray[1] = 10;
       dArray[2] = 7;  dArray[3] = 5;
       dArray[4] = 4;  dArray[5] = 4;
       dArray[6] = 3;  dArray[7] = 3;
-      dArray[8] = 3;  dArray[9] = 2;
     }
-    dArray[10] = digits;
+    dArray[8] = digits;
     kArray[0] = 10; kArray[1] = 100;
     kArray[2] = 1000;  kArray[3] = 10000;
     kArray[4] = 100000;  kArray[5] = 1000000;
     kArray[6] = 10000000;  kArray[7] = 100000000;
-    kArray[8] = 1000000000;  kArray[9] = 100000000000;
-    kArray[10] = r;
+    kArray[8] = k;
   }
   else if(maxLength == 100) {
     dArray[0] = 100; dArray[1] = 50;
     dArray[2] = 34;  dArray[3] = 25;
     dArray[4] = 20;  dArray[5] = 17;
     dArray[6] = 15;  dArray[7] = 13;
-    dArray[8] = 12;  dArray[9] = 10;
-    dArray[10] = digits;
+    dArray[8] = digits;
     kArray[0] = 10; kArray[1] = 100;
     kArray[2] = 1000;  kArray[3] = 10000;
     kArray[4] = 100000;  kArray[5] = 1000000;
     kArray[6] = 10000000;  kArray[7] = 100000000;
-    kArray[8] = 1000000000;  kArray[9] = 100000000000;
-    kArray[10] = r;
+    kArray[8] = k;
   }
   else {
     dArray[0] = digits;
@@ -115,10 +110,12 @@ int main(int argc, const char **argv){
 
   for(int i = 0; i < dArrayLength; i++) {
     cout << "start " << i+1 << ": k = " << kArray[i] << endl;;
+    out << "start " << i+1 << ": k = " << kArray[i] << endl;;
     gettimeofday(&start, NULL);
-    radixSort(vect, n, dArray[i], kArray[i]);
+    cRadixSort(vect, n, dArray[i], kArray[i]);
     gettimeofday(&finish, NULL);
-    totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
+    totalTime = ((double)((double)(finish.tv_sec - start.tv_sec)) +
+        ((double)(finish.tv_usec - start.tv_usec))/1000000);
     cout << "     " << totalTime << "s" << endl;
     out << "     " << totalTime << "s" << endl;
   }
@@ -128,13 +125,13 @@ int main(int argc, const char **argv){
   cout << "start" << endl;
   gettimeofday(&start, NULL);
   //cRadixSort(vect, n, digits, k);
-  radixSort(vect, n, digits, k);
+  radixSort(vect, n, 12, 1000000000);
   gettimeofday(&finish, NULL);
   totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
   cout << totalTime << "s" << endl;
   for(int i = 1; i <= n; i++)
     out << vect[i] << endl;
-  */
+    */
 
 	return 0;
 }
