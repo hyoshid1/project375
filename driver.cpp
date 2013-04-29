@@ -56,12 +56,12 @@ int main(int argc, const char **argv){
   while(in.good()) {
     getline(in, line);
     if(line != "") {
-      //vect[count] = stringToBigUnsigned(line);
       vect.push_back(stringToBigUnsigned(line));
       count++;
     }
   }
   
+//Calculate necessary params from radix sort
   long double bytes = calcBytes(max, maxLength);
   int digits = ceil(bytes/(log(n)/log(2.0L)));
   int r = ceil(bytes/digits);
@@ -123,12 +123,21 @@ int main(int argc, const char **argv){
   /*
 //Write time it took to sort an sorted numbers into output file
   cout << "start" << endl;
+  
+//Start Timer
   gettimeofday(&start, NULL);
+
+//2 radix Sorts -> counting sort, bucket sort
   //cRadixSort(vect, n, digits, k);
   radixSort(vect, n, 12, 1000000000);
+  radixSort(vect, n, digits, k);
+
+//End Timer
   gettimeofday(&finish, NULL);
+
   totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
-  cout << totalTime << "s" << endl;
+//Write to output file
+  out <<"Sor time: " << totalTime << "s" << endl;
   for(int i = 1; i <= n; i++)
     out << vect[i] << endl;
     */

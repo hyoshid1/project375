@@ -1,3 +1,9 @@
+/*List used in radix Sort using buckets.
+ *root and end pointers to initialize and append faster
+ *accessor and mutator
+ *append and remove first 
+ */
+
 #ifndef LIST_H__
 #define LIST_H__
 
