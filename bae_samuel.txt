@@ -5,5 +5,6 @@ a third party library called BigIntegerLibrary. I also created and maintained
 the makefile. Finally, I went through all the code and edited it so that 
 it has a uniform coding style.
 
-Ho-on's performance was great. The work was divided fairly evenly, and
+Ho-on's performance was great. The work was divided fairly evenly, and 
+he finished timely and efficiently.
 
