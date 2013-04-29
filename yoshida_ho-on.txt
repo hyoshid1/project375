@@ -5,5 +5,5 @@ Contribution to Project:
   -Random number generator to create input files
 
 Evalutaion of Partner (Sam):
-  Sam performed very well. I feel that we were able to communicate well and able to 
-  do our work without much conflict.
+  Sam performed very well. I feel that we were able to communicate well and we were 
+	able to do our work without much conflict.
