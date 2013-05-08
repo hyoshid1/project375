@@ -17,7 +17,7 @@ long double calcBytes(std::string max, int maxLength);
 void cRadixSort(std::vector<BigUnsigned> &vect, int size, long digits, int k);
 
 //to compare with quicksort
-int partition(BigInteger *array, int start, int size);
-void quickSort(BigInteger *array, int start, int size);
+int partition(std::vector<BigUnsigned> &array, int start, int size);
+void quickSort(std::vector<BigUnsigned> &array, int start, int size);
 
 #endif

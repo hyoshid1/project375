@@ -70,31 +70,6 @@ long double calcBytes(string max, int maxLength) {
   return ceil(bytes);
 }
 
-int partition(BigInteger *array, int start, int size){
-	BigInteger x = array[size];
-	int i = start-1;
-	for(int j = start; j<size; j++){
-		if(array[j] > x){
-			i++;
-			BigInteger temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-		}
-	}
-	BigInteger temp2 = array[i+1];
-	array[i+1] = array[size];
-	array[size] = temp2;
-	return i+1;
-}
-
-void quickSort(BigInteger *array, int start, int size){
-	if(start < size){
-		int q = partition(array, start, size);
-		quickSort(array, start, q-1);
-		quickSort(array, q+1, size);
-	}
-}
-
 void cRadixSort(vector<BigUnsigned> &vect, int size, long digits, int k) {
   BigUnsigned mod = k, div = 1, temp, empty;//, *sArray
   vector<BigUnsigned> sVect(size+1, 0);

@@ -67,47 +67,61 @@ int main(int argc, const char **argv){
   int r = ceil(bytes/digits);
   long k = pow(2.0, (double)r);
 
-  int dArrayLength = 9;
-  int dArray[9];
-  long kArray[9];
+  int dArrayLength = 12;
+  int dArray[12];
+  long kArray[12];
   if(maxLength == 10 || maxLength == 20) {
     if(maxLength == 10) {
       dArray[0] = 10; dArray[1] = 5;
       dArray[2] = 4;  dArray[3] = 3;
       dArray[4] = 2;  dArray[5] = 2;
       dArray[6] = 2;  dArray[7] = 2;
+			dArray[8] = 2;	dArray[9] = 1;
     } 
     else {
       dArray[0] = 20; dArray[1] = 10;
       dArray[2] = 7;  dArray[3] = 5;
       dArray[4] = 4;  dArray[5] = 4;
       dArray[6] = 3;  dArray[7] = 3;
+			dArray[8] = 3;	dArray[9] = 2; 
+			dArray[10] = 2; dArray[11] = 2;
     }
-    dArray[8] = digits;
     kArray[0] = 10; kArray[1] = 100;
     kArray[2] = 1000;  kArray[3] = 10000;
     kArray[4] = 100000;  kArray[5] = 1000000;
     kArray[6] = 10000000;  kArray[7] = 100000000;
-    kArray[8] = k;
+    kArray[8] = 1000000000; kArray[9] = 10000000000;
+		kArray[10] = 100000000000; kArray[11] = 1000000000000;
   }
   else if(maxLength == 100) {
     dArray[0] = 100; dArray[1] = 50;
     dArray[2] = 34;  dArray[3] = 25;
     dArray[4] = 20;  dArray[5] = 17;
     dArray[6] = 15;  dArray[7] = 13;
-    dArray[8] = digits;
+    dArray[8] = 11;
     kArray[0] = 10; kArray[1] = 100;
     kArray[2] = 1000;  kArray[3] = 10000;
     kArray[4] = 100000;  kArray[5] = 1000000;
     kArray[6] = 10000000;  kArray[7] = 100000000;
-    kArray[8] = k;
+    kArray[8] = 1000000000; 
   }
-  else {
-    dArray[0] = digits;
-    kArray[0] = k;
-    dArrayLength = 1;
-  }
+  else if(maxLength ==50) {
+    dArray[0] = 50;	dArray[1] = 25;
+		dArray[2] = 17; dArray[3] = 13;
+		dArray[4] = 10; dArray[5] = 9;
+		dArray[6] = 8;	dArray[7] = 7;
+		dArray[8] = 6;	dArray[9] = 5;
+		dArray[10] = 5; dArray[11] = 5;
+    dArrayLength = 12;
+    kArray[0] = 10; kArray[1] = 100;
+    kArray[2] = 1000;  kArray[3] = 10000;
+    kArray[4] = 100000;  kArray[5] = 1000000;
+    kArray[6] = 10000000;  kArray[7] = 100000000;
+    kArray[8] = 1000000000; kArray[9] = 10000000000;
+		kArray[10] = 100000000000; kArray[11] = 1000000000000;
 
+  }else{}
+	if(maxLength==10) dArrayLength = 10;
   for(int i = 0; i < dArrayLength; i++) {
     cout << "start " << i+1 << ": k = " << kArray[i] << endl;;
     out << "start " << i+1 << ": k = " << kArray[i] << endl;;
@@ -119,7 +133,6 @@ int main(int argc, const char **argv){
     cout << "     " << totalTime << "s" << endl;
     out << "     " << totalTime << "s" << endl;
   }
-
   /*
 //Write time it took to sort an sorted numbers into output file
   cout << "start" << endl;
@@ -130,6 +143,7 @@ int main(int argc, const char **argv){
 //2 radix Sorts -> counting sort, bucket sort
   //cRadixSort(vect, n, digits, k);
   radixSort(vect, n, digits, k);
+	quickSort(vect, 1, n);
 
 //End Timer
   gettimeofday(&finish, NULL);

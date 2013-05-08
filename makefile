@@ -77,3 +77,6 @@ test3:
 
 test4:
 	./submission 100d_largeInput.txt 100d_largeOutput.txt
+
+test5:
+	./submission 50d_largeInput.txt 50d_largeOutput.txt
