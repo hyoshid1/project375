@@ -67,6 +67,7 @@ int main(int argc, const char **argv){
   int r = ceil(bytes/digits);
   long k = pow(2.0, (double)r);
 
+//Arrays used as d and k for different inputs
   int dArrayLength = 12;
   int dArray[12];
   long kArray[12];
