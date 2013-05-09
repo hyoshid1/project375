@@ -122,39 +122,23 @@ int main(int argc, const char **argv){
 		kArray[10] = 100000000000; kArray[11] = 1000000000000;
 
   }else{}
-	if(maxLength==10) dArrayLength = 10;
+	if(maxLength==10) dArrayLength = 9;
+  else if(maxLength==20) dArrayLength = 9;
+  else dArrayLength = 8;
   for(int i = 0; i < dArrayLength; i++) {
     cout << "start " << i+1 << ": k = " << kArray[i] << endl;;
-    out << "start " << i+1 << ": k = " << kArray[i] << endl;;
     gettimeofday(&start, NULL);
     cRadixSort(vect, n, dArray[i], kArray[i]);
     gettimeofday(&finish, NULL);
     totalTime = ((double)((double)(finish.tv_sec - start.tv_sec)) +
         ((double)(finish.tv_usec - start.tv_usec))/1000000);
     cout << "     " << totalTime << "s" << endl;
-    out << "     " << totalTime << "s" << endl;
   }
-  /*
-//Write time it took to sort an sorted numbers into output file
-  cout << "start" << endl;
   
-//Start Timer
-  gettimeofday(&start, NULL);
-
-//2 radix Sorts -> counting sort, bucket sort
-  //cRadixSort(vect, n, digits, k);
-  radixSort(vect, n, digits, k);
-	quickSort(vect, 1, n);
-
-//End Timer
-  gettimeofday(&finish, NULL);
-
-  totalTime = (double)((double)(finish.tv_sec - start.tv_sec)); 
 //Write to output file
-  out <<"Sor time: " << totalTime << "s" << endl;
   for(int i = 1; i <= n; i++)
     out << vect[i] << endl;
-    */
+    
 
 	return 0;
 }
